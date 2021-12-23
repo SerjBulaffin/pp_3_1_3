@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="webjars/bootstrap/4.6.1/css/bootstrap.min.css"/>
+    <title>Index</title>
+</head>
+
+<body class="text-center">
+<nav class="navbar navbar-dark bg-dark">
+    <!-- Контент навигационной панели -->
+    <ul class="nav flex-column">
+        <h5>
+            <strong> <span id="user_Email" class="text-white bg-dark"></span> </strong>
+            <span class="text-white bg-dark" > with roles: </span>
+            <span id="user_Roles" class="text-white bg-dark"></span>
+        </h5>
+    </ul>
+    <a style="clear:right" class="text-muted bg-dark" href="/logout">Logout</a>
+</nav>
+
+<!--таблица юзеров-->
+
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-2 p-0 pt-3">
+
+            <div class="list-group list-group-flush">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a href="#admin_panel" class="list-group-item list-group-item-action active">Admin</a>
+                    <a href="/user" class="list-group-item list-group-item-action">User</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-10 bg-light p4">
+            <div class="tab-content active">
+                <div class="tab-pane show active" id="admin_panel" role="tabpanel">
+                    <h1 align="left">Admin panel</h1>
+
+                    <ul class="nav nav-tabs pt-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="admin-tab" data-toggle="tab" href="#mainTableWithUsers"
+                               role="tab" aria-controls="admin" aria-selected="true">Users table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="new-user-id" data-toggle="modal" data-target="#modalNewUser"
+                               aria-selected="false">New User</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div><h5 align="left" class="card-header">All users</h5></div>
+                        <div class="card">
+                            <div class="card-block">
+                                <table class="table table-hover" id="mainTableWithUsers">
+                                    <thead>
+                                    <tr class="border-top">
+                                        <th>ID</th>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Age</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно добавление нового пользователя -->
+<div class="modal fade" id="modalNewUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add new User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="defaultSomeForm">
+                    <div class="mb-3 text-center">
+                        <label for="first_name"><b>First Name</b></label>
+                        <input id="first_name" class="form-control" type="text" placeholder="firstName">
+                    </div>
+                    <div class="mb-3 text-center">
+                        <label for="last_name"><b>Last Name</b></label>
+                        <input id="last_name" class="form-control" type="text" placeholder="lastName">
+                    </div>
+                    <div class="mb-3 text-center">
+                        <label for="age"><b>Age</b></label>
+                        <input id="age" class="form-control" type="number" min="1" max="128" placeholder="age">
+                    </div>
+                    <div class="mb-3 text-center">
+                        <label for="email"><b>Email</b></label>
+                        <input id="email" class="form-control" type="text" placeholder="email">
+                    </div>
+                    <div class="mb-3 text-center">
+                        <label for="password"><b>Password</b></label>
+                        <input id="password" class="form-control" type="password" autocomplete="new-password" placeholder="password">
+                    </div>
+                    <div class="mb-3 text-center">
+                        <label for="role_select"><b>Role</b></label>
+                        <select class="form-select" name="role_select" id="role_select" size="2" multiple>
+                            <option value="1" name="ROLE_ADMIN">ROLE_ADMIN</option>
+                            <option value="2" name="ROLE_USER">ROLE_USER</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary mb-2" type="button" id="addNewUserButton">Add new user</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--скрытое дефолтное модальное окно -->
+<div class="modal fade" id="someDefaultModal" tabindex="-1" role="dialog" aria-labelledby="someDefaultModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+            </div>
+
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="webjars/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/4.6.1/js/bootstrap.min.js"></script>
+<script src="/java_script/main.js"></script>
+</body>
+</html>
