@@ -78,11 +78,6 @@ public class AdminRestController {
             return new ResponseEntity<>(new DataInfoHandler(error), HttpStatus.BAD_REQUEST);
         }
 
-        if (user.getFirstName().isEmpty() | user.getLastName().isEmpty() | user.getAge() > 128 |
-                user.getAge() < 1 | user.getPassword().isEmpty() | user.getEmail().isEmpty() | user.getRoles().isEmpty()) {
-            throw new UserWithSuchLoginExist("User with such login Exist");
-        }
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         try {
@@ -101,11 +96,6 @@ public class AdminRestController {
         if (bindingResult.hasErrors()) {
             String error = getErrorsFromBindingResult(bindingResult);
             return new ResponseEntity<>(new DataInfoHandler(error), HttpStatus.BAD_REQUEST);
-        }
-
-        if (user.getFirstName().isEmpty() | user.getLastName().isEmpty() | user.getAge() > 128 |
-                user.getAge() < 1 | user.getEmail().isEmpty() | user.getRoles().isEmpty()) {
-            throw new UserWithSuchLoginExist("User with such login Exist");
         }
 
         String bCryptPassword = user.getPassword().isEmpty() ?
@@ -129,6 +119,7 @@ public class AdminRestController {
         return new ResponseEntity<>(new DataInfoHandler("User was deleted"), HttpStatus.OK);
     }
 
+    //Собираем все ошибки валидации в коллекцию и выводим в окне
     private String getErrorsFromBindingResult(BindingResult bindingResult) {
         return bindingResult.getFieldErrors()
                 .stream()

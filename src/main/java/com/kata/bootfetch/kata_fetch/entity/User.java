@@ -20,22 +20,22 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "first_name", unique = true, nullable = false)
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 20, message = "Неверная длина имени")
     private String firstName; // уникальное значение
 
     @Column(name = "last_name")
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 20, message = "Неверная длина фамилии")
     private String lastName;
 
     @Column(name = "age")
     private byte age;
 
     @Column(name = "password", nullable = false)
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 20, message = "Неверная длина пароля")
     private String password;
 
     @Column(name = "email", unique = true, nullable = false)
-    @Size(min = 7, max = 20)
+    @Size(min = 7, max = 20, message = "Неверная длина email")
     private String email;
 
     //@JsonBackReference //убираем циклические ссылки
