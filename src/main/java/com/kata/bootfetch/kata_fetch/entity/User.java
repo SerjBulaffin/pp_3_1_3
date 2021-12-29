@@ -31,7 +31,7 @@ public class User implements UserDetails {
     private byte age;
 
     @Column(name = "password", nullable = false)
-    @Size(min = 2, max = 20, message = "Неверная длина пароля")
+    //@Size(min = 3, max = 50, message = "Неверная длина пароля")
     private String password;
 
     @Column(name = "email", unique = true, nullable = false)

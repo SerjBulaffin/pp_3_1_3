@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api")
 public class AdminRestController {
 
     private UserService userDetailsService;
@@ -76,6 +76,10 @@ public class AdminRestController {
         if (bindingResult.hasErrors()) {
             String error = getErrorsFromBindingResult(bindingResult);
             return new ResponseEntity<>(new DataInfoHandler(error), HttpStatus.BAD_REQUEST);
+        }
+
+        if (user.getPassword().isEmpty()) {
+            throw new UserWithSuchLoginExist("Wrong password");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));

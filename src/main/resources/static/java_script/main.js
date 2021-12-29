@@ -13,21 +13,21 @@ const userFetchService = {
         'Referer': null
     },
     // bodyAdd : async function(user) {return {'method': 'POST', 'headers': this.head, 'body': user}},
-    findAllUsers: async () => await fetch('admin/users'),
-    getCurrentUser: async () => await fetch('admin/current'),
-    findOneUser: async (id) => await fetch(`admin/users/${id}`),
-    addNewUser: async (user) => await fetch('admin/users', {
+    findAllUsers: async () => await fetch('api/users'),
+    getCurrentUser: async () => await fetch('api/current'),
+    findOneUser: async (id) => await fetch(`api/users/${id}`),
+    addNewUser: async (user) => await fetch('api/users', {
         method: 'POST',
         headers: userFetchService.head,
         body: JSON.stringify(user)
     }),
-    updateUser: async (user, id) => await fetch(`admin/users/${id}`, {
+    updateUser: async (user, id) => await fetch(`api/users/${id}`, {
         method: 'PUT',
         headers: userFetchService.head,
         body: JSON.stringify(user)
     }),
-    deleteUser: async (id) => await fetch(`admin/users/${id}`, {method: 'DELETE', headers: userFetchService.head}),
-    findRoleById: async (id) => await fetch(`admin/role/${id}`)
+    deleteUser: async (id) => await fetch(`api/users/${id}`, {method: 'DELETE', headers: userFetchService.head}),
+    findRoleById: async (id) => await fetch(`api/role/${id}`)
 }
 
 //строка для вывода в шапку страницы почты и ролей
