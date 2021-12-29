@@ -1,12 +1,10 @@
 package com.kata.bootfetch.kata_fetch.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
@@ -22,18 +20,22 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "first_name", unique = true, nullable = false)
+    @Size(min = 2, max = 20)
     private String firstName; // уникальное значение
 
     @Column(name = "last_name")
+    @Size(min = 2, max = 20)
     private String lastName;
 
     @Column(name = "age")
     private byte age;
 
     @Column(name = "password", nullable = false)
+    @Size(min = 2, max = 20)
     private String password;
 
     @Column(name = "email", unique = true, nullable = false)
+    @Size(min = 7, max = 20)
     private String email;
 
     //@JsonBackReference //убираем циклические ссылки
@@ -41,10 +43,10 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id"
-    )
+//    @JsonIdentityInfo(
+//            generator = ObjectIdGenerators.PropertyGenerator.class,
+//            property = "id"
+//    )
     private Set<Role> roles;
 
     public User() {

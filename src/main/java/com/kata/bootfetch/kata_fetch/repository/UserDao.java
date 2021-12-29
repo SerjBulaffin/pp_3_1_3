@@ -11,15 +11,4 @@ import java.util.stream.Stream;
 public interface UserDao extends JpaRepository<User, Long> {
     public User getUserByEmail(String email);
     public User getUserByFirstName(String name);
-//    List<User> getAllUsers();
-//
-//    User getUserByName(String name);
-//    User getUserByEmail(String email);
-//
-//    void addUser(User user);
-//    void updateUser(User user);
-//    void removeUserById(Long id);
-//    User getUser(Long id);
-
-    //void addUserDB();
 }

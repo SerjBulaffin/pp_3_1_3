@@ -25,10 +25,10 @@ public class Role implements GrantedAuthority {
 
     @JsonBackReference //убираем циклические ссылки
     @ManyToMany(mappedBy = "roles")
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id"
-    )
+//    @JsonIdentityInfo(
+//            generator = ObjectIdGenerators.PropertyGenerator.class,
+//            property = "id"
+//    )
     private List<User> users;
 
     public Role() {}
